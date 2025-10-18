@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from src.models.tasks import (
+from src.backend.models.tasks import (
     TaskPriority,
     TaskStatus,
     GetTaskResponse,

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from typing import Literal
 
-from src.routers import (
+from src.backend.routers import (
     users,
     tasks,
 )

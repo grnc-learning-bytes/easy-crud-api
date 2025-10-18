@@ -2,7 +2,7 @@ import datetime as dt
 from enum import Enum
 from pydantic import BaseModel
 
-from src.models.common import (
+from src.backend.models.common import (
     GetManyMeta,
     GetManyLinks,
     GetSingleMeta,

@@ -1,5 +1,5 @@
 import uvicorn
 
-from src.server import app
+from src.backend.server import app
 
 uvicorn.run(app=app, host="0.0.0.0", port=8000, workers=1)

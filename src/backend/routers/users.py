@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from src.models.users import (
+from src.backend.models.users import (
     GetUserResponse,
     GetUsersResponse,
     PostUserResponse,

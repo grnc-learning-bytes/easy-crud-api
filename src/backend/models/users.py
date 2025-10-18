@@ -1,7 +1,7 @@
 import datetime as dt
 from pydantic import BaseModel
 
-from src.models.common import (
+from src.backend.models.common import (
     GetManyLinks,
     GetManyMeta,
     GetSingleLinks,
