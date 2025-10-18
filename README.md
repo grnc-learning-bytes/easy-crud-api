@@ -18,7 +18,8 @@ A simple project to explore Backend code design concepts.
 - **Database**: `sqlmodel`
 - **Settings Management**: `pydantic-settings`
 - **Linting and formatting**: `ruff`
-
+- **CICD**: GitHub Actions and `dagger`
+- **Dependency Management**: `uv`
 
 ## Development
 
@@ -28,7 +29,7 @@ Run `uv sync`
 
 ### Run tests
 
-- Linting: `uv run ruff --check` (run `uv run ruff --fix` for auto-fixes)
+- Linting: `uv run ruff check` (run `uv run ruff check --fix` for auto-fixes)
 - Formatting: `uv run ruff format --check` (run `uv run ruff format` to auto-format)
 - Type tests: `uv run mypy .`
 - Unit tests: `uv run pytest tests/backend/unit -v`
