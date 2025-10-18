@@ -32,7 +32,7 @@ class UserData(BaseModel):
 
 class GetUserResponse(BaseModel):
     data: UserData
-    meta: GetSingleMeta = GetSingleMeta()
+    meta: GetSingleMeta
     links: GetSingleLinks
 
 

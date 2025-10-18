@@ -100,5 +100,5 @@ class TaskTracker:
             .with_file("/bin/uvx", uv_image.file("/uvx"))
             .with_directory("/app", source)
             .with_workdir("/app")
-            .with_exec(["uv", "sync", "--locked"])
+            .with_exec(["uv", "sync", "--no-dev", "--locked"])
         )
