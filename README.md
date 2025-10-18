@@ -3,6 +3,22 @@
 A simple project to explore Backend code design concepts.
 
 
+## TODO
+
+- [] GitHub actions
+- [] User repository
+  - [] Faker
+  - [] Postgres
+- [] User service
+- [] User routes
+- [] Tasks repository
+  - [] Faker
+  - [] Postgres
+- [] Tasks service
+- [] Tasks routes
+- [] Authentication with JWT
+
+
 ## Database Model
 
 ![](./assets/db-model.svg)
@@ -29,7 +45,11 @@ Run `uv sync`
 
 ### Run tests
 
-- Linting: `uv run ruff check` (run `uv run ruff check --fix` for auto-fixes)
-- Formatting: `uv run ruff format --check` (run `uv run ruff format` to auto-format)
-- Type tests: `uv run mypy .`
-- Unit tests: `uv run pytest tests/backend/unit -v`
+We are using `dagger` to make local tests exactly the same as the ones run in CI.
+
+To run all local tests, run: `dagger call test-local`. These include:
+
+- `Formatting tests`: `dagger call test-fmt`
+- `Linting tests`: `dagger call test-lint`
+- `Type tests`: `dagger call test-types`
+- `Unit tests`: `dagger call test-unit`
