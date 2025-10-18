@@ -15,5 +15,7 @@ def faker_container() -> Generator[Container]:
     # Create container with fakers
     container = Container()
     container.build()
-    with container.override_providers(user_repo=providers.Singleton(InMemoryUserRepository)):
+    with container.override_providers(
+        user_repo=providers.Singleton(InMemoryUserRepository)
+    ):
         yield container

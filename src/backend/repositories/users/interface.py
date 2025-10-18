@@ -4,7 +4,6 @@ from src.backend.models.users import UserData
 
 
 class UserRepository(ABC):
-
     @abstractmethod
     def create_user(self, username: str, password: str, email: str) -> UserData:
         raise NotImplementedError
@@ -20,7 +19,7 @@ class UserRepository(ABC):
     @abstractmethod
     def update_user(self, id: int, username: str | None, email: str | None) -> UserData:
         raise NotImplementedError
-    
+
     @abstractmethod
     def delete_user(self, id: int) -> None:
         raise NotImplementedError

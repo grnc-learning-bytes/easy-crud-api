@@ -24,7 +24,11 @@ async def get_task(id: int) -> GetTaskResponse:
 
 @router.post("/tasks", tags=["tasks"])
 async def create_task(
-    name: str, description: str, priority: str, status: str, tags: list[str] | None = None
+    name: str,
+    description: str,
+    priority: str,
+    status: str,
+    tags: list[str] | None = None,
 ) -> PostTaskResponse:
     raise NotImplementedError
 

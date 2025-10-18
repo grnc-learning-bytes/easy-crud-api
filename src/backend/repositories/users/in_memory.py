@@ -3,10 +3,9 @@ from src.backend.repositories.users.interface import UserRepository
 
 
 class InMemoryUserRepository(UserRepository):
-    
     def __init__(self) -> None:
         self.users: dict[str, UserData] = {}
-    
+
     def create_user(self, username: str, password: str, email: str) -> UserData:
         raise NotImplementedError
 

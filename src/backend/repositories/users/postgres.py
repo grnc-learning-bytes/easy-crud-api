@@ -4,7 +4,6 @@ from src.backend.settings.settings import PgSettings
 
 
 class PgUserRepository(UserRepository):
-    
     def __init__(self, db_settings: PgSettings):
         raise NotImplementedError
 
