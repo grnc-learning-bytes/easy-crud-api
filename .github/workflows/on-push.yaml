@@ -7,6 +7,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         dagger-function: ["test-fmt", "test-lint", "test-types", "test-unit"]
     steps:
