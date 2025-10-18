@@ -8,8 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dagger-function: ["test-fmt"]
-        #dagger-function: ["test-fmt", "test-lint", "test-types", "test-unit"]
+        dagger-function: ["test-fmt", "test-lint", "test-types", "test-unit"]
     steps:
       - uses: actions/checkout@v5
       - name: Call dagger function '${{ matrix.dagger-function }}'

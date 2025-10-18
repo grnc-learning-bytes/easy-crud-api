@@ -37,6 +37,7 @@ class TaskTracker:
             .with_exec(lint_tests_command)
             .with_exec(type_tests_command)
             .with_exec(unit_tests_command)
+            .stdout()
         )
 
     @function
@@ -47,7 +48,7 @@ class TaskTracker:
         ],
     ) -> str:
         """Runs formatting tests"""
-        return await self.build_env(source).with_exec(fmt_tests_command)
+        return await self.build_env(source).with_exec(fmt_tests_command).stdout()
 
     @function
     async def test_lint(
@@ -57,7 +58,7 @@ class TaskTracker:
         ],
     ) -> str:
         """Runs Linting tests"""
-        return await self.build_env(source).with_exec(lint_tests_command)
+        return await self.build_env(source).with_exec(lint_tests_command).stdout()
 
     @function
     async def test_types(
@@ -67,7 +68,7 @@ class TaskTracker:
         ],
     ) -> str:
         """Runs type tests"""
-        return await self.build_env(source).with_exec(type_tests_command)
+        return await self.build_env(source).with_exec(type_tests_command).stdout()
 
     @function
     async def test_unit(
@@ -77,7 +78,7 @@ class TaskTracker:
         ],
     ) -> str:
         """Runs unit tests"""
-        return await self.build_env(source).with_exec(unit_tests_command)
+        return await self.build_env(source).with_exec(unit_tests_command).stdout()
 
     ############
     # Building #
