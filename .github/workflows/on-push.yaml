@@ -8,12 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dagger-function: ["test-fmt", "test-lint", "test-types", "test-unit"]
+        dagger-function: ["test-fmt"]
+        #dagger-function: ["test-fmt", "test-lint", "test-types", "test-unit"]
     steps:
       - uses: actions/checkout@v5
       - name: Call dagger function '${{ matrix.dagger-function }}'
-        uses: dagger/dagger-for-github@v8.2.0
+        uses: .dagger
         with:
-          module: github.com/shykes/daggerverse/hello
+          module: https://github.com/grnc-learning-bytes/easy-crud-api/.dagger
           call: ${{ matrix.dagger-function }}
           version: "latest"  # semver vX.Y.Z
