@@ -13,8 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Call dagger function '${{ matrix.dagger-function }}'
-        uses: .dagger
+        uses: dagger/dagger-for-github@v8.2.0
         with:
-          module: https://github.com/grnc-learning-bytes/easy-crud-api/.dagger
+          module: .dagger
           call: ${{ matrix.dagger-function }}
           version: "latest"  # semver vX.Y.Z
