@@ -10,7 +10,7 @@ from src.models.users import (
 router = APIRouter()
 
 
-@router.get("/users/", tags=["users"])
+@router.get("/users", tags=["users"])
 async def get_users() -> GetUsersResponse:
     raise NotImplementedError
 

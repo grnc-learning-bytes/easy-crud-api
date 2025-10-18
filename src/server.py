@@ -1,21 +1,20 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
+from typing import Literal
 
 from src.routers import (
     users,
-    tags,
     tasks,
 )
 
 app = FastAPI()
 app.include_router(users.router)
-app.include_router(tags.router)
 app.include_router(tasks.router)
 
 @app.get("/")
-def root():
+def root() -> RedirectResponse:
     return RedirectResponse(url="/docs")
 
 @app.get("/health")
-def health() -> dict[str, str]:
-    return {"status": "healthy"}
+def health() -> Literal["healthy"]:
+    return "healthy"

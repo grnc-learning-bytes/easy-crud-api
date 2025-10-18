@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 @router.get("/tasks", tags=["tasks"])
-async def get_tasks() -> GetTasksResponse:
+async def get_tasks(tags: list[str]) -> GetTasksResponse:
     raise NotImplementedError
 
 
@@ -24,7 +24,7 @@ async def get_task(id: int) -> GetTaskResponse:
 
 @router.post("/tasks", tags=["tasks"])
 async def create_task(
-    name: str, description: str, priority: str, status: str
+    name: str, description: str, priority: str, status: str, tags: list[str] | None = None
 ) -> PostTaskResponse:
     raise NotImplementedError
 
@@ -32,10 +32,11 @@ async def create_task(
 @router.patch("/tasks/{id}", tags=["tasks"])
 async def update_task(
     id: int,
-    name: str | None,
-    description: str | None,
-    status: TaskStatus | None,
-    priority: TaskPriority | None,
+    name: str | None = None,
+    description: str | None = None,
+    status: TaskStatus | None = None,
+    priority: TaskPriority | None = None,
+    tags: list[str] | None = None,
 ) -> PatchTaskResponse:
     raise NotImplementedError
 

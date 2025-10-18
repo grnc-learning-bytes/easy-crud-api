@@ -54,6 +54,7 @@ class Task(BaseModel):
     description: str
     priority: TaskPriority
     status: TaskStatus
+    tags: list[str] | None = None
     created_at: dt.datetime
     updated_at: dt.datetime
 
