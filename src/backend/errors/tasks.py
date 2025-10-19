@@ -7,7 +7,7 @@ class TaskDoesNotExist(HTTPException):
             status_code=404,
             detail={
                 "code": "task_does_not_exist",
-                "description": "Task does not exist."
+                "description": "Task does not exist.",
             },
             headers=headers,
         )

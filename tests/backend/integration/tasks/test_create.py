@@ -39,9 +39,9 @@ def test_can_create_tasks_with_same_content(client: TestClient):
 
 def test_cant_create_tasks_with_invalid_schema(client: TestClient):
     res = client.post("/tasks", json={"invalid": "schema"})
-    assert res.status_code == 400
+    assert res.status_code == 422
 
 
 def test_cant_create_tasks_with_incomplete_schema(client: TestClient):
     res = client.post("/tasks", json={"name": "My Task"})
-    assert res.status_code == 400
+    assert res.status_code == 422

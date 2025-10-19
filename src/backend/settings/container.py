@@ -6,7 +6,6 @@ from src.backend.services.tasks import TaskService
 
 
 class DepsContainer(DynamicContainer):
-    
     def build(self) -> None:
         self.task_repo = Singleton(InMemoryTaskRepo)
         self.task_service = Singleton(TaskService, task_repo=self.task_repo())

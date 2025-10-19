@@ -23,7 +23,7 @@ async def get_task(id: int) -> GetTaskResponse:
     raise NotImplementedError
 
 
-@router.post("/tasks", tags=["tasks"])
+@router.post("/tasks", tags=["tasks"], status_code=201)
 async def create_task(task: Task) -> CreateTaskResponse:
     return container.task_service().create_task(task)
 
