@@ -1,17 +1,22 @@
 from dependency_injector.containers import DynamicContainer
 from dependency_injector.providers import Singleton
 
-from src.backend.repositories.users.interface import UserRepository
-from src.backend.repositories.users.postgres import PgUserRepository
-from src.backend.settings.settings import PgSettings
+from src.backend.repositories.tasks.in_memory import InMemoryTaskRepo
+from src.backend.services.tasks import TaskService
 
 
-class Container(DynamicContainer):
-    ######################################################
-    # Build all the application dependencies dynamically #
-    ######################################################
+class DepsContainer(DynamicContainer):
+    def build(self) -> None:
+        self.task_repo = Singleton(InMemoryTaskRepo)
+        self.task_service = Singleton(TaskService, task_repo=self.task_repo())
 
-    def build(self):
-        self.user_repo: Singleton[UserRepository] = Singleton(
-            PgUserRepository, dsn=PgSettings()
-        )
+
+class Container:
+    _container: DepsContainer | None = None
+
+    @classmethod
+    def container(cls) -> DepsContainer:
+        if cls._container is None:
+            cls._container = DepsContainer()
+            cls._container.build()
+        return cls._container
