@@ -1,8 +1,13 @@
-import datetime as dt
-
-from src.backend.models.domain.tasks import Task
+from src.backend.models.responses.tasks import TaskResponseData
 
 
-class TaskInternal(Task):
-    created_at: dt.datetime
-    updated_at: dt.datetime
+class TaskInternal(TaskResponseData):
+    pass
+
+    def to_task_response_data(self) -> TaskResponseData:
+        return TaskResponseData(
+            id=self.id,
+            attributes=self.attributes,
+            relationships=self.relationships,
+            links=self.links,
+        )

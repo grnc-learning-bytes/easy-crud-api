@@ -51,9 +51,9 @@ class TaskResponseData(BaseModel):
 
 
 class TaskResponseLinks(BaseModel):
-    self: HttpUrl
-    prev: HttpUrl | None
-    next: HttpUrl | None
+    self: HttpUrl | None = None
+    prev: HttpUrl | None = None
+    next: HttpUrl | None = None
 
 
 #########################
@@ -68,18 +68,18 @@ class ListTasksResponse(BaseModel):
 
 
 class GetTaskResponse(BaseModel):
-    data: list[TaskResponseData]
+    data: TaskResponseData
     metadata: dict | None = None
     links: TaskResponseLinks
 
 
 class CreateTaskResponse(BaseModel):
-    data: list[TaskResponseData]
+    data: TaskResponseData
     metadata: dict | None = None
     links: TaskResponseLinks
 
 
 class UpdateTaskResponse(BaseModel):
-    data: list[TaskResponseData]
+    data: TaskResponseData
     metadata: dict | None = None
     links: TaskResponseLinks

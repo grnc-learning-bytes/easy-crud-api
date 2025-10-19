@@ -4,7 +4,12 @@ from typing import Literal
 
 from src.backend.routers import tasks
 
-app = FastAPI()
+
+app = FastAPI(
+    title="Task Tracker",
+    description="An application for you to easily track your tasks!",
+    version="0.0.1",
+)
 app.include_router(tasks.router)
 
 
