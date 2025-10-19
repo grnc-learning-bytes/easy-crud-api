@@ -10,7 +10,13 @@ from dagger import dag, DefaultPath, Doc, function, object_type
 lint_tests_command: list[str] = ["uv", "run", "ruff", "check"]
 fmt_tests_command: list[str] = ["uv", "run", "ruff", "format", "--check"]
 type_tests_command: list[str] = ["uv", "run", "mypy", "."]
-int_tests_command: list[str] = ["uv", "run", "pytest", "tests/backend/integration", "-v"]
+int_tests_command: list[str] = [
+    "uv",
+    "run",
+    "pytest",
+    "tests/backend/integration",
+    "-v",
+]
 
 ######################
 # Pipeline functions #

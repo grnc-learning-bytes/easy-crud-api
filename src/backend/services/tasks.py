@@ -1,13 +1,11 @@
 from src.backend.models.domain.tasks import Task
-from src.backend.models.responses.tasks import (
-    CreateTaskResponse, ListTasksResponse
-)
+from src.backend.models.responses.tasks import CreateTaskResponse, ListTasksResponse
 from src.backend.repositories.tasks.interface import TaskRepo
 
 
 class TaskService:
     page_size: int = 10
-    
+
     def __init__(self, task_repo: TaskRepo):
         self._task_repo = task_repo
 
@@ -18,7 +16,9 @@ class TaskService:
 
     def list_tasks(self, page: int, tags: set[str] | None = None) -> ListTasksResponse:
         tasks_internal = self._task_repo.list_tasks(
-            page=page, page_size=self.page_size, tags=tags,
+            page=page,
+            page_size=self.page_size,
+            tags=tags,
         )
         tasks_response_data = [t.to_task_response_data() for t in tasks_internal]
         return ListTasksResponse(data=tasks_response_data)
