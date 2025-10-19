@@ -21,7 +21,7 @@ async def list_tasks(page: int, tags: set[str] | None = None) -> ListTasksRespon
 
 @router.get("/tasks/{id}", tags=["tasks"])
 async def get_task(id: int) -> GetTaskResponse:
-    raise NotImplementedError
+    return task_service.get_task(id)
 
 
 @router.post("/tasks", tags=["tasks"], status_code=201)

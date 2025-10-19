@@ -28,6 +28,12 @@ class InMemoryTaskRepo(TaskRepo):
         self._id += 1
         self._tasks[store_task.id] = store_task
         return store_task
+    
+    def get_task(self, id: int) -> TaskInternal:
+        task = self._tasks.get(id, None)
+        if task is None:
+            raise TaskDoesNotExist
+        return task
 
     def list_tasks(
         self, page: int, page_size: int, tags: set[str] | None = None
