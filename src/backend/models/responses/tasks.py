@@ -77,9 +77,3 @@ class CreateTaskResponse(BaseModel):
     data: TaskResponseData
     metadata: dict | None = None
     links: TaskResponseLinks = TaskResponseLinks()
-
-
-class UpdateTaskResponse(BaseModel):
-    data: TaskResponseData
-    metadata: dict | None = None
-    links: TaskResponseLinks = TaskResponseLinks()

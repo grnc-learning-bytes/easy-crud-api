@@ -1,5 +1,9 @@
 from src.backend.models.domain.tasks import Task
-from src.backend.models.responses.tasks import CreateTaskResponse, ListTasksResponse, GetTaskResponse
+from src.backend.models.responses.tasks import (
+    CreateTaskResponse,
+    ListTasksResponse,
+    GetTaskResponse,
+)
 from src.backend.repositories.tasks.interface import TaskRepo
 
 
@@ -13,7 +17,10 @@ class TaskService:
         task_internal = self._task_repo.create_task(task)
         task_response_data = task_internal.to_task_response_data()
         return CreateTaskResponse(data=task_response_data)
-    
+
+    def update_task(self, id: int, task: Task) -> None:
+        self._task_repo.update_task(id, task)
+
     def get_task(self, id: int) -> GetTaskResponse:
         task_internal = self._task_repo.get_task(id)
         task_response_data = task_internal.to_task_response_data()
@@ -27,6 +34,6 @@ class TaskService:
         )
         tasks_response_data = [t.to_task_response_data() for t in tasks_internal]
         return ListTasksResponse(data=tasks_response_data)
-    
+
     def delete_task(self, id: int) -> None:
         self._task_repo.delete_task(id)

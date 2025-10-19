@@ -39,7 +39,5 @@ def test_list_tasks_all_have_filter_tags(client: TestClient):
     assert res.status_code == 200
     body = res.json()
     ListTasksResponse.model_validate(body)
-    task_tags: list[list[str]] = [
-        d["attributes"]["tags"] for d in body["data"]
-    ]
+    task_tags: list[list[str]] = [d["attributes"]["tags"] for d in body["data"]]
     assert all(["chore" in t for t in task_tags])

@@ -8,9 +8,13 @@ class TaskRepo(ABC):
     @abstractmethod
     def create_task(self, task: Task) -> TaskInternal:
         raise NotImplementedError
-    
+
     @abstractmethod
     def get_task(self, id: int) -> TaskInternal:
+        raise NotImplementedError
+
+    @abstractmethod
+    def update_task(self, id: int, task: Task) -> None:
         raise NotImplementedError
 
     @abstractmethod

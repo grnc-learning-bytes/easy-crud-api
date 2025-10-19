@@ -3,7 +3,6 @@ from src.backend.models.responses.tasks import (
     ListTasksResponse,
     GetTaskResponse,
     CreateTaskResponse,
-    UpdateTaskResponse,
 )
 from src.backend.settings.container import Container
 
@@ -29,9 +28,9 @@ async def create_task(task: Task) -> CreateTaskResponse:
     return task_service.create_task(task)
 
 
-@router.put("/tasks/{id}", tags=["tasks"])
-async def update_task(id: int, task: Task) -> UpdateTaskResponse:
-    raise NotImplementedError
+@router.put("/tasks/{id}", tags=["tasks"], status_code=204)
+async def update_task(id: int, task: Task) -> None:
+    task_service.update_task(id, task)
 
 
 @router.delete("/tasks/{id}", tags=["tasks"])
