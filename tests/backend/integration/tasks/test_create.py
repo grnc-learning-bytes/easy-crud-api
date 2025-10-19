@@ -14,7 +14,6 @@ def test_can_create_task(client: TestClient):
             "tags": ["chore"],
         },
     )
-    res.raise_for_status()
     assert res.status_code == 201
     CreateTaskResponse.model_validate(res.json())
 
@@ -28,12 +27,10 @@ def test_can_create_tasks_with_same_content(client: TestClient):
     }
 
     res = client.post("/tasks", json=task_content)
-    res.raise_for_status()
     assert res.status_code == 201
     CreateTaskResponse.model_validate(res.json())
 
     res = client.post("/tasks", json=task_content)
-    res.raise_for_status()
     assert res.status_code == 201
     CreateTaskResponse.model_validate(res.json())
 
