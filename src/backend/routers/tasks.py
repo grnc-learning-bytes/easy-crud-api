@@ -1,19 +1,18 @@
-from fastapi import APIRouter
-
-from src.backend.models.tasks import (
-    TaskPriority,
-    TaskStatus,
+from src.backend.models.domain.tasks import Task
+from src.backend.models.responses.tasks import (
+    ListTasksResponse,
     GetTaskResponse,
-    GetTasksResponse,
-    PostTaskResponse,
-    PatchTaskResponse,
+    CreateTaskResponse,
+    UpdateTaskResponse,
 )
+
+from fastapi import APIRouter
 
 router = APIRouter()
 
 
 @router.get("/tasks", tags=["tasks"])
-async def get_tasks(tags: list[str]) -> GetTasksResponse:
+async def list_tasks(tags: list[str] | None = None) -> ListTasksResponse:
     raise NotImplementedError
 
 
@@ -23,25 +22,12 @@ async def get_task(id: int) -> GetTaskResponse:
 
 
 @router.post("/tasks", tags=["tasks"])
-async def create_task(
-    name: str,
-    description: str,
-    priority: str,
-    status: str,
-    tags: list[str] | None = None,
-) -> PostTaskResponse:
+async def create_task(task: Task) -> CreateTaskResponse:
     raise NotImplementedError
 
 
-@router.patch("/tasks/{id}", tags=["tasks"])
-async def update_task(
-    id: int,
-    name: str | None = None,
-    description: str | None = None,
-    status: TaskStatus | None = None,
-    priority: TaskPriority | None = None,
-    tags: list[str] | None = None,
-) -> PatchTaskResponse:
+@router.put("/tasks/{id}", tags=["tasks"])
+async def update_task(id: int, task: Task) -> UpdateTaskResponse:
     raise NotImplementedError
 
 

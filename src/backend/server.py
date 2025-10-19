@@ -2,13 +2,9 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from typing import Literal
 
-from src.backend.routers import (
-    users,
-    tasks,
-)
+from src.backend.routers import tasks
 
 app = FastAPI()
-app.include_router(users.router)
 app.include_router(tasks.router)
 
 

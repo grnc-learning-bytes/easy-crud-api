@@ -102,3 +102,13 @@ class TaskTracker:
             .with_workdir("/app")
             .with_exec(["uv", "sync", "--no-dev", "--locked"])
         )
+    
+    @function
+    def build(
+        self,
+        source: Annotated[
+            dagger.Directory, DefaultPath("/"), Doc("task-tracker source directory")
+        ],
+    ) -> dagger.Container:
+        """Build a ready-to-use development environment"""
+        return self.build_env(source).with_exec(["uv", "run", "-m", "src.backend"])

@@ -12,13 +12,14 @@ dependencies = [
     "pyyaml>=6.0.3",
     "sqlalchemy>=2.0.44",
     "sqlmodel>=0.0.27",
+    "typer>=0.19.2",
     "types-pyyaml>=6.0.12.20250915",
     "uvicorn>=0.37.0",
 ]
 
 [dependency-groups]
 dev = [
-    "faker>=37.11.0",
+    "httpx>=0.28.1",
     "mypy>=1.18.2",
     "pytest>=8.4.2",
     "ruff>=0.14.1",
