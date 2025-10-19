@@ -39,7 +39,18 @@ class InMemoryTaskRepo(TaskRepo):
         cur_task = self._tasks.get(id, None)
         if cur_task is None:
             raise TaskDoesNotExist
-        self._tasks[id] = task
+        self._tasks[id] = TaskInternal(
+            id=self._id,
+            attributes=TaskInternalAttributes(
+                name=task.name,
+                description=task.description,
+                priority=task.priority,
+                status=task.status,
+                tags=task.tags,
+                created_at=cur_task.attributes.created_at,
+                updated_at=dt.datetime.now(dt.timezone.utc),
+            ),
+        )
 
     def list_tasks(
         self, page: int, page_size: int, tags: set[str] | None = None
