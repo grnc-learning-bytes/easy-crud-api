@@ -1,17 +1,18 @@
 from fastapi.testclient import TestClient
-from httpx import HTTPStatusError
-import pytest
 
 from src.backend.models.responses.tasks import CreateTaskResponse
 
 
 def test_can_create_task(client: TestClient):
-    res = client.post("/tasks", data={
-        "name": "Create tests",
-        "description": "Create behavioral tests for testing the api end to end.",
-        "priority": "high",
-        "status": "backlog",
-    })
+    res = client.post(
+        "/tasks",
+        data={
+            "name": "Create tests",
+            "description": "Create behavioral tests for testing the api end to end.",
+            "priority": "high",
+            "status": "backlog",
+        },
+    )
     res.raise_for_status()
     assert res.status_code == 201
     CreateTaskResponse.model_validate(res.json())

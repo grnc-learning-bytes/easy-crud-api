@@ -102,7 +102,7 @@ class TaskTracker:
             .with_workdir("/app")
             .with_exec(["uv", "sync", "--no-dev", "--locked"])
         )
-    
+
     @function
     def build(
         self,

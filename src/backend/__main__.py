@@ -1,6 +1,7 @@
 import typer
 import uvicorn
 
+
 def main(
     app: str = "src.backend.server:app",
     host: str = "0.0.0.0",
@@ -9,5 +10,6 @@ def main(
     reload: bool = False,
 ) -> None:
     uvicorn.run(app=app, host=host, port=port, workers=workers, reload=reload)
+
 
 typer.run(main)
