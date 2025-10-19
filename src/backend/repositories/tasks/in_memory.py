@@ -1,5 +1,6 @@
 import datetime as dt
 
+from src.backend.errors.tasks import TaskDoesNotExist
 from src.backend.models.domain.tasks import Task
 from src.backend.models.internal.tasks import TaskInternal, TaskInternalAttributes
 from src.backend.repositories.tasks.interface import TaskRepo
@@ -25,6 +26,7 @@ class InMemoryTaskRepo(TaskRepo):
             ),
         )
         self._id += 1
+        self._tasks[store_task.id] = store_task
         return store_task
 
     def list_tasks(
@@ -46,3 +48,8 @@ class InMemoryTaskRepo(TaskRepo):
         start_idx: int = (page - 1) * page_size
         end_idx: int = start_idx + page_size
         return relevant_tasks[start_idx:end_idx]
+
+    def delete_task(self, id: int) -> None:
+        task = self._tasks.pop(id, None)
+        if task is None:
+            raise TaskDoesNotExist()

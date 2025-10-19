@@ -14,3 +14,7 @@ class TaskRepo(ABC):
         self, page: int, page_size: int, tags: set[str] | None = None
     ) -> list[TaskInternal]:
         raise NotImplementedError
+
+    @abstractmethod
+    def delete_task(self, id: int) -> None:
+        raise NotImplementedError

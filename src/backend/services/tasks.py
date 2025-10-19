@@ -22,3 +22,6 @@ class TaskService:
         )
         tasks_response_data = [t.to_task_response_data() for t in tasks_internal]
         return ListTasksResponse(data=tasks_response_data)
+    
+    def delete_task(self, id: int) -> None:
+        self._task_repo.delete_task(id)

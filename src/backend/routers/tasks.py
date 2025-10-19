@@ -36,4 +36,4 @@ async def update_task(id: int, task: Task) -> UpdateTaskResponse:
 
 @router.delete("/tasks/{id}", tags=["tasks"])
 async def delete_task(id: int) -> None:
-    raise NotImplementedError
+    task_service.delete_task(id)
