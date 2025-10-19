@@ -10,7 +10,7 @@ from dagger import dag, DefaultPath, Doc, function, object_type
 lint_tests_command: list[str] = ["uv", "run", "ruff", "check"]
 fmt_tests_command: list[str] = ["uv", "run", "ruff", "format", "--check"]
 type_tests_command: list[str] = ["uv", "run", "mypy", "."]
-unit_tests_command: list[str] = ["uv", "run", "pytest", "tests/backend/unit", "-v"]
+int_tests_command: list[str] = ["uv", "run", "pytest", "tests/backend/integration", "-v"]
 
 ######################
 # Pipeline functions #
@@ -36,7 +36,7 @@ class TaskTracker:
             .with_exec(fmt_tests_command)
             .with_exec(lint_tests_command)
             .with_exec(type_tests_command)
-            .with_exec(unit_tests_command)
+            .with_exec(int_tests_command)
             .stdout()
         )
 
@@ -71,14 +71,14 @@ class TaskTracker:
         return await self.build_env(source).with_exec(type_tests_command).stdout()
 
     @function
-    async def test_unit(
+    async def test_int(
         self,
         source: Annotated[
             dagger.Directory, DefaultPath("/"), Doc("task-tracker source directory")
         ],
     ) -> str:
-        """Runs unit tests"""
-        return await self.build_env(source).with_exec(unit_tests_command).stdout()
+        """Runs integration tests"""
+        return await self.build_env(source).with_exec(int_tests_command).stdout()
 
     ############
     # Building #

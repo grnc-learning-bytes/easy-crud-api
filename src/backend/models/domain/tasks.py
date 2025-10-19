@@ -23,4 +23,4 @@ class Task(BaseModel):
     description: str
     priority: TaskPriority
     status: TaskStatus
-    tags: list[str] | None = None
+    tags: set[str] | None = None

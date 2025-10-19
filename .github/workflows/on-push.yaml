@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dagger-function: ["test-fmt", "test-lint", "test-types", "test-unit"]
+        dagger-function: ["test-fmt", "test-lint", "test-types", "test-int"]
     steps:
       - uses: actions/checkout@v5
       - name: Call dagger function '${{ matrix.dagger-function }}'

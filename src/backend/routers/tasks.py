@@ -10,12 +10,13 @@ from src.backend.settings.container import Container
 from fastapi import APIRouter
 
 container = Container.container()
+task_service = container.task_service()
 router = APIRouter()
 
 
 @router.get("/tasks", tags=["tasks"])
-async def list_tasks(tags: list[str] | None = None) -> ListTasksResponse:
-    raise NotImplementedError
+async def list_tasks(page: int, tags: set[str] | None = None) -> ListTasksResponse:
+    return task_service.list_tasks(page, tags)
 
 
 @router.get("/tasks/{id}", tags=["tasks"])
@@ -25,7 +26,7 @@ async def get_task(id: int) -> GetTaskResponse:
 
 @router.post("/tasks", tags=["tasks"], status_code=201)
 async def create_task(task: Task) -> CreateTaskResponse:
-    return container.task_service().create_task(task)
+    return task_service.create_task(task)
 
 
 @router.put("/tasks/{id}", tags=["tasks"])

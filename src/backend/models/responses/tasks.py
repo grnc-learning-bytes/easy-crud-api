@@ -64,22 +64,22 @@ class TaskResponseLinks(BaseModel):
 class ListTasksResponse(BaseModel):
     data: list[TaskResponseData]
     metadata: dict | None = None
-    links: TaskResponseLinks
+    links: TaskResponseLinks = TaskResponseLinks()
 
 
 class GetTaskResponse(BaseModel):
     data: TaskResponseData
     metadata: dict | None = None
-    links: TaskResponseLinks
+    links: TaskResponseLinks = TaskResponseLinks()
 
 
 class CreateTaskResponse(BaseModel):
     data: TaskResponseData
     metadata: dict | None = None
-    links: TaskResponseLinks
+    links: TaskResponseLinks = TaskResponseLinks()
 
 
 class UpdateTaskResponse(BaseModel):
     data: TaskResponseData
     metadata: dict | None = None
-    links: TaskResponseLinks
+    links: TaskResponseLinks = TaskResponseLinks()

@@ -8,3 +8,7 @@ class TaskRepo(ABC):
     @abstractmethod
     def create_task(self, task: Task) -> TaskInternal:
         raise NotImplementedError
+    
+    @abstractmethod
+    def list_tasks(self, page: int, page_size: int, tags: set[str] | None = None) -> list[TaskInternal]:
+        raise NotImplementedError

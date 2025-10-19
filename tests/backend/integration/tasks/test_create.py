@@ -11,6 +11,7 @@ def test_can_create_task(client: TestClient):
             "description": "Create behavioral tests for testing the api end to end.",
             "priority": "high",
             "status": "backlog",
+            "tags": ["chore"]
         },
     )
     res.raise_for_status()

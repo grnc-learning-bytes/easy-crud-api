@@ -26,3 +26,19 @@ class InMemoryTaskRepo(TaskRepo):
         )
         self._id += 1
         return store_task
+
+    def list_tasks(self, page: int, page_size: int, tags: set[str] | None = None) -> list[TaskInternal]:
+        if tags is None:
+            tags = set[str]()
+
+        # Task filtering
+        def is_task_properly_tagged(t: TaskInternal) -> bool:
+            task_tags = set[str]() if t.attributes.tags is None else t.attributes.tags
+            return any([t in task_tags for t in tags])
+
+        relevant_tasks = [t for _, t in self._tasks.items() if is_task_properly_tagged(t)]
+
+        # Pagination
+        start_idx: int = (page - 1) * page_size
+        end_idx: int = start_idx + page_size
+        return relevant_tasks[start_idx:end_idx]
