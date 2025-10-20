@@ -35,3 +35,13 @@ To run all local tests, run:
 - `Linting tests`: `uv run ruff check`
 - `Type tests`: `uv run mypy .`
 - `Unit tests`: `uv run python -m pytest tests -vv`
+
+## Postgres
+
+`docker run --name task-tracker -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres`
+
+`export DATABASE_DSN=postgresql://postgres:postgres@localhost:5432/postgres`
+
+`uv run alembic revision --autogenerate -m "Initial migration"`
+
+`uv run alembic upgrade head`

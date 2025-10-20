@@ -7,11 +7,11 @@ requires-python = ">=3.13"
 dependencies = [
     "dependency-injector>=4.48.2",
     "fastapi>=0.119.0",
+    "psycopg2-binary>=2.9.11",
     "pydantic-settings>=2.11.0",
     "pydantic>=2.12.3",
     "pyyaml>=6.0.3",
     "sqlalchemy>=2.0.44",
-    "sqlmodel>=0.0.27",
     "typer>=0.19.2",
     "types-pyyaml>=6.0.12.20250915",
     "uvicorn>=0.37.0",
@@ -19,8 +19,10 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "alembic>=1.17.0",
     "httpx>=0.28.1",
     "mypy>=1.18.2",
+    "pgadmin4>=9.9",
     "pytest>=8.4.2",
     "ruff>=0.14.1",
 ]
