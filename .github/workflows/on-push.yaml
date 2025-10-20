@@ -4,17 +4,38 @@ on: push
 
 jobs:
 
-  tests:
+  test-format:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        dagger-function: ["test-fmt", "test-lint", "test-types", "test-int"]
     steps:
       - uses: actions/checkout@v5
-      - name: Call dagger function '${{ matrix.dagger-function }}'
-        uses: dagger/dagger-for-github@v8.2.0
-        with:
-          module: .dagger
-          call: ${{ matrix.dagger-function }}
-          version: "latest"  # semver vX.Y.Z
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: Run format tests
+        run: uv run ruff format --check
+  
+  test-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: Run linter tests
+        run: uv run ruff check
+
+  test-types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: Run type tests
+        run: uv run mypy .
+  
+  test-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: Run integration tests
+        run: uv run python -m pytest tests -vv

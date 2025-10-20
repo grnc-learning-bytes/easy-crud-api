@@ -1,3 +1,6 @@
+from fastapi import APIRouter, Query
+from typing import Annotated
+
 from src.backend.models.domain.tasks import Task
 from src.backend.models.responses.tasks import (
     ListTasksResponse,
@@ -6,15 +9,16 @@ from src.backend.models.responses.tasks import (
 )
 from src.backend.settings.container import Container
 
-from fastapi import APIRouter
-
 container = Container.container()
 task_service = container.task_service()
 router = APIRouter()
 
 
 @router.get("/tasks", tags=["tasks"])
-async def list_tasks(page: int, tags: set[str] | None = None) -> ListTasksResponse:
+async def list_tasks(
+    page: int, tags: Annotated[set[str] | None, Query()] = None
+) -> ListTasksResponse:
+    print(tags)
     return task_service.list_tasks(page, tags)
 
 

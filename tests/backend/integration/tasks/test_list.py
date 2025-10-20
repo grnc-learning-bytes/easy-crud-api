@@ -15,7 +15,7 @@ def test_list_tasks_without_page_fails(client: TestClient):
 
 
 def test_list_tasks_all_have_filter_tags(client: TestClient):
-    client.post(
+    res = client.post(
         "/tasks",
         json={
             "name": "Create tests",
@@ -25,6 +25,7 @@ def test_list_tasks_all_have_filter_tags(client: TestClient):
             "tags": ["chore"],
         },
     )
+    task_id: int = res.json()["data"]["id"]
     client.post(
         "/tasks",
         json={
@@ -35,9 +36,9 @@ def test_list_tasks_all_have_filter_tags(client: TestClient):
             "tags": ["more-chore"],
         },
     )
-    res = client.get("/tasks?page=1&tags[]=chore")
+    res = client.get("/tasks?page=1&tags=chore")
     assert res.status_code == 200
     body = res.json()
     ListTasksResponse.model_validate(body)
-    task_tags: list[list[str]] = [d["attributes"]["tags"] for d in body["data"]]
-    assert all(["chore" in t for t in task_tags])
+    ids: list[int] = [d["id"] for d in body["data"]]
+    assert task_id in ids

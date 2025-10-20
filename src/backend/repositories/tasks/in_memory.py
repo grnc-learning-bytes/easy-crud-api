@@ -61,7 +61,12 @@ class InMemoryTaskRepo(TaskRepo):
         # Task filtering
         def is_task_properly_tagged(t: TaskInternal) -> bool:
             task_tags = set[str]() if t.attributes.tags is None else t.attributes.tags
-            return any([t in task_tags for t in tags])
+            cond = any([tag in task_tags for tag in tags])
+            print("Task tags:", task_tags)
+            print("Tags:", tags)
+            print("Contains:", cond)
+            print()
+            return cond
 
         relevant_tasks = [
             t for _, t in self._tasks.items() if is_task_properly_tagged(t)
